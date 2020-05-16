@@ -15,7 +15,7 @@ int main() {
     max7219_send_command(MAX7219_DECODE_MODE, 0x0F); //Code B decode for the first four digits
     sei(); //set global interrupt enable flag
     while(1) {
-        _delay_ms(0xFFF);
+        _delay_ms(0xFFFF);
     }
 }
 
@@ -30,6 +30,7 @@ ISR(TIM0_OVF_vect, ISR_NOBLOCK) { //no blocking ISR to not miss any toggle inter
     //in conclusion: display the number of toggle interrupts every half second, no further processing needed
     int remainder = sensor_toggle_count;
     sensor_toggle_count = 0;
+    remainder *= 60; //Hz to rpm
     for (unsigned char i = 1; i < 5; i++) { //only the last 4 digits are displayed
         if (remainder || i == 1) { //no leading zeros
             max7219_send_command(i, remainder % 10);
