@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
-project(frequenzzaehler)
+project(frequencycounter)
 
 set(AVRSTRIP avr-strip)
 set(OBJCOPY avr-objcopy)
 set(CMAKE_C_COMPILER avr-gcc)
 set(CMAKE_CXX_COMPILER avr-g++)
 
-set(CWARN "-Wall -Wextra -Wstrict-prototypes") #warnungen des compilers an
-set(CTUNING "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums") #optimierungen
-set(COPT "-Os") #optimiert für speicher (Os), optimiert für performance (O3)
+set(CWARN "-Wall -Wextra -Wstrict-prototypes")
+set(CTUNING "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums")
+set(COPT "-Os")
 set(CMCU "-mmcu=attiny85")
 set(CMCUAVRNAME "t85")
 set(CDEFS "-DF_CPU=128000ul") # clock at 128kHz
